@@ -9,7 +9,7 @@ public abstract class DAO {
 	static EntityManagerFactory emf;
 
 	static {
-		emf = Persistence.createEntityManagerFactory("dac");
+		emf = Persistence.createEntityManagerFactory("dao");
 	}
 
 	protected EntityManager getEntityManager() {

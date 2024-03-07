@@ -1,20 +1,20 @@
 package br.edu.ifpb.mt.dac;
 
-import java.util.List;
+import br.edu.ifpb.mt.dac.dao.LivroDAO;
+import br.edu.ifpb.mt.dac.entities.Livro;
 
-import br.edu.ifpb.mt.dac.dao.UserDAO;
-import br.edu.ifpb.mt.dac.entities.User;
+import java.util.List;
 
 public class MainGetAll {
 
 	public static void main(String[] args) throws DacException {
 
-		UserDAO dao = new UserDAO();
+		LivroDAO dao = new LivroDAO();
 		try {
-			List<User> usuarios = dao.getAll();
+			List<Livro> livros = dao.getAll();
 
-			for (User user : usuarios) {
-				System.out.println(user);
+			for (Livro l : livros) {
+				System.out.println(l);
 			}
 
 		} finally {

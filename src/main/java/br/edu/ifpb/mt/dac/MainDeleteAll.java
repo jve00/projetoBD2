@@ -1,18 +1,19 @@
 package br.edu.ifpb.mt.dac;
 
+import br.edu.ifpb.mt.dac.dao.LivroDAO;
+import br.edu.ifpb.mt.dac.entities.Livro;
+
 import java.util.List;
 
-import br.edu.ifpb.mt.dac.dao.UserDAO;
-import br.edu.ifpb.mt.dac.entities.User;
 
 public class MainDeleteAll {
 
 	public static void main(String[] args) throws DacException {
-		UserDAO dao = new UserDAO();
+		LivroDAO dao = new LivroDAO();
 		try {
-			List<User> usuarios = dao.getAll();
-			for (User usuario : usuarios) {
-				dao.delete(usuario);
+			List<Livro> livros = dao.getAll();
+			for (Livro l : livros) {
+				dao.delete(l);
 			}
 		} finally {
 			dao.close();

@@ -1,30 +1,33 @@
 package br.edu.ifpb.mt.dac;
 
-import java.util.Date;
+import br.edu.ifpb.mt.dac.dao.LivroDAO;
+import br.edu.ifpb.mt.dac.entities.Enuns.GeneroLivro;
+import br.edu.ifpb.mt.dac.entities.Livro;
 
-import br.edu.ifpb.mt.dac.dao.UserDAO;
-import br.edu.ifpb.mt.dac.entities.User;
+import java.time.LocalDate;
+
+;
 
 public class MainDelete {
 
 	public static void main(String[] args) throws DacException {
-		UserDAO dao = new UserDAO();
+		LivroDAO dao = new LivroDAO();
 		try {
 			// Primeiro salvar
-			User user = new User();
+			Livro livro = new Livro();
 
-			user.setBirthday(new Date());
-			user.setEmail("email@gmail.com");
-			user.setFirstName("Sicrano");
-			user.setLastName("Silva");
+			livro.setNome("exenplo");
+			livro.setGenero(GeneroLivro.ROMANCE);
+			livro.setAutor("Robson Caliban");
+			livro.setDataDePublicacao(LocalDate.now());
 
-			dao.save(user);
+			dao.save(livro);
 
 			System.out.println(dao.getAll().size());
 
 			// Depois apagar
 
-			dao.delete(user);
+			dao.delete(livro);
 
 			System.out.println(dao.getAll().size());
 		} finally {
