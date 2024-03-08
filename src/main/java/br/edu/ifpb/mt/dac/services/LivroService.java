@@ -4,6 +4,7 @@ import br.edu.ifpb.mt.dac.dao.LivroDAO;
 import br.edu.ifpb.mt.dac.dao.PersistenciaDacException;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroCreateDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroDTO;
+import br.edu.ifpb.mt.dac.dtos.livro.LivroUpdateDTO;
 import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.RegraNegocioException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,13 +18,22 @@ public class LivroService {
     public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException {
         try{
             livroDAO.save(retornaLivroEntity(livroCreateDTO));
+            return retornaLivroDTO(livroCreateDTO);
         }catch (PersistenciaDacException erro){
-            throw new RegraNegocioException("Ocorreu algum erro ao tentar salvar o usuário.");
+            throw new RegraNegocioException("Ocorreu algum erro ao tentar salvar o livro.");
         }
-        return retornaLivroDTO(livroCreateDTO);
     }
 
-    // Métodos extras:
+    public LivroDTO atualizarLivro(LivroUpdateDTO livroUpdateDTO) throws RegraNegocioException{
+        try{
+            livroDAO.update(retornaLivroEntity(livroUpdateDTO));
+            return retornaLivroDTO(livroUpdateDTO);
+        }catch (PersistenciaDacException erro){
+            throw new RegraNegocioException("Ocorreu algum erro ao tentar atualizar o livro.");
+        }
+    }
+
+    // Métodos conversão:
     public LivroEntity retornaLivroEntity(Object object){
         LivroEntity livroEntity = null;
         if(object instanceof LivroCreateDTO){
@@ -31,6 +41,9 @@ public class LivroService {
         }
         else if(object instanceof LivroDTO){
             livroEntity = objectMapper.convertValue((LivroDTO) object, LivroEntity.class);
+        }
+        else if(object instanceof LivroUpdateDTO){
+            livroEntity = objectMapper.convertValue((LivroUpdateDTO) object, LivroEntity.class);
         }
         return livroEntity;
     }
@@ -41,6 +54,9 @@ public class LivroService {
         }
         else if(object instanceof LivroEntity){
             livroDTO = objectMapper.convertValue((LivroEntity) object, LivroDTO.class);
+        }
+        else if(object instanceof LivroUpdateDTO){
+            livroDTO = objectMapper.convertValue((LivroUpdateDTO) object, LivroDTO.class);
         }
         return livroDTO;
     }
