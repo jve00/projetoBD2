@@ -9,6 +9,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LivroDTO extends LivroCreateDTO{
-
+public class LivroDTO{
+    private String nome;
+    private String autor;
+    private String genero;
+    private LocalDate localDate;
 }

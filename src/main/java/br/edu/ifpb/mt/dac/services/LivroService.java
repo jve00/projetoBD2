@@ -9,8 +9,9 @@ import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.RegraNegocioException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class LivroService {
     private final ObjectMapper objectMapper;
     private final LivroDAO livroDAO;

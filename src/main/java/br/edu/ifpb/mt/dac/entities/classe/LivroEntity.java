@@ -1,6 +1,8 @@
 package br.edu.ifpb.mt.dac.entities.classe;
 
 import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,14 +11,12 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Livros")
+@AllArgsConstructor
+@NoArgsConstructor
 public class LivroEntity implements Serializable {
 
 
     private static final long serialVersionUID = 1L;
-
-    public LivroEntity(){
-    }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
