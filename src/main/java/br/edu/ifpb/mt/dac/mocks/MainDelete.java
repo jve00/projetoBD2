@@ -1,8 +1,9 @@
-package br.edu.ifpb.mt.dac;
+package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
-import br.edu.ifpb.mt.dac.entities.Enuns.GeneroLivro;
-import br.edu.ifpb.mt.dac.entities.Livro;
+import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
+import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.time.LocalDate;
 
@@ -14,20 +15,20 @@ public class MainDelete {
 		LivroDAO dao = new LivroDAO();
 		try {
 			// Primeiro salvar
-			Livro livro = new Livro();
+			LivroEntity livroEntity = new LivroEntity();
 
-			livro.setNome("exenplo");
-			livro.setGenero(GeneroLivro.ROMANCE);
-			livro.setAutor("Robson Caliban");
-			livro.setDataDePublicacao(LocalDate.now());
+			livroEntity.setNome("exenplo");
+			livroEntity.setGenero(GeneroLivro.ROMANCE);
+			livroEntity.setAutor("Robson Caliban");
+			livroEntity.setDataDePublicacao(LocalDate.now());
 
-			dao.save(livro);
+			dao.save(livroEntity);
 
 			System.out.println(dao.getAll().size());
 
 			// Depois apagar
 
-			dao.delete(livro);
+			dao.delete(livroEntity);
 
 			System.out.println(dao.getAll().size());
 		} finally {

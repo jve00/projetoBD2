@@ -1,4 +1,4 @@
-package br.edu.ifpb.mt.dac;
+package br.edu.ifpb.mt.dac.exceptions;
 
 public class DacException extends Exception {
 

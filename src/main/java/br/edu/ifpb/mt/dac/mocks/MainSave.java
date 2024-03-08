@@ -1,8 +1,9 @@
-package br.edu.ifpb.mt.dac;
+package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
-import br.edu.ifpb.mt.dac.entities.Enuns.GeneroLivro;
-import br.edu.ifpb.mt.dac.entities.Livro;
+import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
+import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.time.LocalDate;
 
@@ -11,18 +12,18 @@ public class MainSave {
 	public static void main(String[] args) throws DacException {
 		LivroDAO dao = new LivroDAO();
 		try {
-			Livro livro = new Livro();
+			LivroEntity livroEntity = new LivroEntity();
 
-			livro.setNome("exenplo");
-			livro.setGenero(GeneroLivro.ROMANCE);
-			livro.setAutor("Robson Caliban");
-			livro.setDataDePublicacao(LocalDate.now());
+			livroEntity.setNome("exenplo");
+			livroEntity.setGenero(GeneroLivro.ROMANCE);
+			livroEntity.setAutor("Robson Caliban");
+			livroEntity.setDataDePublicacao(LocalDate.now());
 
-			System.out.println(livro);
+			System.out.println(livroEntity);
 			
-			dao.save(livro);
+			dao.save(livroEntity);
 
-			System.out.println(livro);
+			System.out.println(livroEntity);
 		} finally {
 			dao.close();
 		}

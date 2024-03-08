@@ -1,21 +1,24 @@
 package br.edu.ifpb.mt.dac.dao;
 
-import br.edu.ifpb.mt.dac.entities.Livro;
+import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import java.util.List;
-
+@Data
+@AllArgsConstructor
 public class LivroDAO extends DAO {
 
-	public void save(Livro livro) throws PersistenciaDacException {
+	public void save(LivroEntity livroEntity) throws PersistenciaDacException {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		try {
-			em.persist(livro);
+			em.persist(livroEntity);
 			transaction.commit();
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
@@ -28,13 +31,13 @@ public class LivroDAO extends DAO {
 		}
 	}
 
-	public Livro update(Livro livro) throws PersistenciaDacException {
+	public LivroEntity update(LivroEntity livroEntity) throws PersistenciaDacException {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
-		Livro resultado = livro;
+		LivroEntity resultado = livroEntity;
 		try {
-			resultado = em.merge(livro);
+			resultado = em.merge(livroEntity);
 			transaction.commit();
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
@@ -48,13 +51,13 @@ public class LivroDAO extends DAO {
 		return resultado;
 	}
 
-	public void delete(Livro livro) throws PersistenciaDacException {
+	public void delete(LivroEntity livroEntity) throws PersistenciaDacException {
 		EntityManager em = getEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		try {
-			livro = em.find(Livro.class, livro.getId());
-			em.remove(livro);
+			livroEntity = em.find(LivroEntity.class, livroEntity.getId());
+			em.remove(livroEntity);
 			transaction.commit();
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
@@ -67,11 +70,11 @@ public class LivroDAO extends DAO {
 		}
 	}
 
-	public Livro getByID(int livroId) throws PersistenciaDacException {
+	public LivroEntity getByID(int livroId) throws PersistenciaDacException {
 		EntityManager em = getEntityManager();
-		Livro resultado = null;
+		LivroEntity resultado = null;
 		try {
-			resultado = em.find(Livro.class, livroId);
+			resultado = em.find(LivroEntity.class, livroId);
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
 			throw new PersistenciaDacException("Ocorreu algum erro ao tentar recuperar o usuário com base no ID.", pe);
@@ -82,11 +85,11 @@ public class LivroDAO extends DAO {
 		return resultado;
 	}
 
-	public List<Livro> getAll() throws PersistenciaDacException {
+	public List<LivroEntity> getAll() throws PersistenciaDacException {
 		EntityManager em = getEntityManager();
-		List<Livro> resultado = null;
+		List<LivroEntity> resultado = null;
 		try {
-			TypedQuery<Livro> query = em.createQuery("SELECT l FROM Livro l", Livro.class);
+			TypedQuery<LivroEntity> query = em.createQuery("SELECT l FROM LivroEntity l", LivroEntity.class);
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();

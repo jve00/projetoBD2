@@ -1,7 +1,8 @@
-package br.edu.ifpb.mt.dac;
+package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
-import br.edu.ifpb.mt.dac.entities.Livro;
+import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public class MainGetAll {
 
 		LivroDAO dao = new LivroDAO();
 		try {
-			List<Livro> livros = dao.getAll();
+			List<LivroEntity> livroEntities = dao.getAll();
 
-			for (Livro l : livros) {
+			for (LivroEntity l : livroEntities) {
 				System.out.println(l);
 			}
 

@@ -1,8 +1,9 @@
-package br.edu.ifpb.mt.dac;
+package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
-import br.edu.ifpb.mt.dac.entities.Enuns.GeneroLivro;
-import br.edu.ifpb.mt.dac.entities.Livro;
+import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
+import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.time.LocalDate;
 
@@ -12,23 +13,23 @@ public class MainUpdate {
 		LivroDAO dao = new LivroDAO();
 		try {
 			// Primeiro salvar
-			Livro livro = new Livro();
+			LivroEntity livroEntity = new LivroEntity();
 
-			livro.setNome("exemplo");
-			livro.setGenero(GeneroLivro.ROMANCE);
-			livro.setAutor("Robson Caliban");
-			livro.setDataDePublicacao(LocalDate.now());
+			livroEntity.setNome("exemplo");
+			livroEntity.setGenero(GeneroLivro.ROMANCE);
+			livroEntity.setAutor("Robson Caliban");
+			livroEntity.setDataDePublicacao(LocalDate.now());
 
-			dao.save(livro);
+			dao.save(livroEntity);
 
-			System.out.println(livro);
+			System.out.println(livroEntity);
 
 			// Depois atualizar
-			livro.setNome("as tarnças do rei careca");
+			livroEntity.setNome("as tarnças do rei careca");
 
-			dao.update(livro);
+			dao.update(livroEntity);
 
-			System.out.println(livro);
+			System.out.println(livroEntity);
 		} finally {
 			dao.close();
 		}

@@ -1,6 +1,6 @@
 package br.edu.ifpb.mt.dac.dao;
 
-import br.edu.ifpb.mt.dac.DacException;
+import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 public class PersistenciaDacException extends DacException {
 

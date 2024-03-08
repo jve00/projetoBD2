@@ -1,4 +1,4 @@
-package br.edu.ifpb.mt.dac.entities.Enuns;
+package br.edu.ifpb.mt.dac.enuns;
 
 public enum GeneroLivro {
     ROMANCE,
