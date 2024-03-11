@@ -13,18 +13,18 @@ public class MainUpdate {
 			LivroDAO dao = new LivroDAO();
 			try {
 
-				LivroEntity livroEntity = dao.getByID(22);
+				LivroEntity livroEntity = dao.getByID(23);
 
-				livroEntity.setNome("cardio");
+				livroEntity.setNome("livro ADS");
 				livroEntity.setGenero(GeneroLivro.FICCAO_CIENTIFICA);
-				livroEntity.setAutor("tony stark");
+				livroEntity.setAutor("Jadson");
 				livroEntity.setDataDePublicacao(LocalDate.now());
 
 				//dao.save(livroEntity);
 
 				System.out.println(livroEntity);
 
-				livroEntity.setNome("allibaba e os 40 ladrões");
+				livroEntity.setNome("livro ADS");
 
 				dao.update(livroEntity);
 

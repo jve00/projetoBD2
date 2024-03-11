@@ -15,7 +15,7 @@ public class MainDelete {
 		LivroDAO dao = new LivroDAO();
 		try {
 			// Primeiro salvar
-			LivroEntity livroEntity = dao.getByID(22);
+			LivroEntity livroEntity = dao.getByID(23);
 
 			livroEntity.setNome("exenplo");
 			livroEntity.setGenero(GeneroLivro.ROMANCE);
