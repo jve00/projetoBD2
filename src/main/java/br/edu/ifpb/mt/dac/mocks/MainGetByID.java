@@ -23,8 +23,6 @@ public class MainGetByID {
 
 			dao.save(livroEntity);
 
-			// Depois recuperar pelo identificador
-
 			LivroEntity resultado = dao.getByID(livroEntity.getId());
 			System.out.println(livroEntity.equals(resultado));
 			System.out.println(livroEntity.getNome());

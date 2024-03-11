@@ -15,18 +15,14 @@ public class MainDelete {
 		LivroDAO dao = new LivroDAO();
 		try {
 			// Primeiro salvar
-			LivroEntity livroEntity = new LivroEntity();
+			LivroEntity livroEntity = dao.getByID(22);
 
 			livroEntity.setNome("exenplo");
 			livroEntity.setGenero(GeneroLivro.ROMANCE);
 			livroEntity.setAutor("Robson Caliban");
 			livroEntity.setDataDePublicacao(LocalDate.now());
 
-			dao.save(livroEntity);
-
 			System.out.println(dao.getAll().size());
-
-			// Depois apagar
 
 			dao.delete(livroEntity);
 
