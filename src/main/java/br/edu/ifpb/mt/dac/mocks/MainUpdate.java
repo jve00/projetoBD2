@@ -2,37 +2,36 @@ package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
 import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.time.LocalDate;
 
 public class MainUpdate {
 
-	public static void main(String[] args) throws DacException {
-		LivroDAO dao = new LivroDAO();
-		try {
-			// Primeiro salvar
-			LivroEntity livroEntity = new LivroEntity();
+		public static void main(String[] args) throws DacException {
+			LivroDAO dao = new LivroDAO();
+			try {
 
-			livroEntity.setNome("exemplo");
-			livroEntity.setGenero(GeneroLivro.ROMANCE);
-			livroEntity.setAutor("Robson Caliban");
-			livroEntity.setDataDePublicacao(LocalDate.now());
+				LivroEntity livroEntity = dao.getByID(22);
 
-			dao.save(livroEntity);
+				livroEntity.setNome("cardio");
+				livroEntity.setGenero(GeneroLivro.FICCAO_CIENTIFICA);
+				livroEntity.setAutor("tony stark");
+				livroEntity.setDataDePublicacao(LocalDate.now());
 
-			System.out.println(livroEntity);
+				//dao.save(livroEntity);
 
-			// Depois atualizar
-			livroEntity.setNome("as tarnças do rei careca");
+				System.out.println(livroEntity);
 
-			dao.update(livroEntity);
+				livroEntity.setNome("allibaba e os 40 ladrões");
 
-			System.out.println(livroEntity);
-		} finally {
-			dao.close();
+				dao.update(livroEntity);
+
+				System.out.println(livroEntity);
+			} finally {
+				dao.close();
+			}
 		}
-	}
 
 }

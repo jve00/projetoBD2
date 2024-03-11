@@ -2,7 +2,7 @@ package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
 import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.time.LocalDate;
@@ -14,9 +14,9 @@ public class MainSave {
 		try {
 			LivroEntity livroEntity = new LivroEntity();
 
-			livroEntity.setNome("exenplo");
-			livroEntity.setGenero(GeneroLivro.ROMANCE);
-			livroEntity.setAutor("Robson Caliban");
+			livroEntity.setNome("teste2");
+			livroEntity.setGenero(GeneroLivro.FICCAO_CIENTIFICA);
+			livroEntity.setAutor("carlos");
 			livroEntity.setDataDePublicacao(LocalDate.now());
 
 			System.out.println(livroEntity);

@@ -5,10 +5,9 @@ import br.edu.ifpb.mt.dac.dao.PersistenciaDacException;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroCreateDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroUpdateDTO;
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.RegraNegocioException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,7 +1,7 @@
 package br.edu.ifpb.mt.dac.mocks;
 
 import br.edu.ifpb.mt.dac.dao.LivroDAO;
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.DacException;
 
 import java.util.List;

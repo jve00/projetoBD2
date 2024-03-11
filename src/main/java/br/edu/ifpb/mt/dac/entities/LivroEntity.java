@@ -1,4 +1,4 @@
-package br.edu.ifpb.mt.dac.entities.classe;
+package br.edu.ifpb.mt.dac.entities;
 
 import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,9 @@ public class LivroEntity implements Serializable {
     private String autor;
     @Column(name = "DATA_DE_PUBLICACAO", nullable = false)
     private LocalDate dataDePublicacao;
+
     @Column(name = "GENERO", nullable = false)
+    @Enumerated(EnumType.STRING)
     private GeneroLivro genero;
 
 

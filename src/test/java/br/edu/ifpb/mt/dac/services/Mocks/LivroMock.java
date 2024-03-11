@@ -3,7 +3,7 @@ package br.edu.ifpb.mt.dac.services.Mocks;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroCreateDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroUpdateDTO;
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.enuns.GeneroLivro;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package br.edu.ifpb.mt.dac.dao;
 
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -25,7 +25,7 @@ public class LivroDAO extends DAO {
 			if (transaction.isActive()) {
 				transaction.rollback();
 			}
-			throw new PersistenciaDacException("Ocorreu algum erro ao tentar salvar o usuário.", pe);
+			throw new PersistenciaDacException("Ocorreu algum erro ao tentar salvar o livro.", pe);
 		} finally {
 			em.close();
 		}
@@ -44,7 +44,7 @@ public class LivroDAO extends DAO {
 			if (transaction.isActive()) {
 				transaction.rollback();
 			}
-			throw new PersistenciaDacException("Ocorreu algum erro ao tentar atualizar o usuário.", pe);
+			throw new PersistenciaDacException("Ocorreu algum erro ao tentar atualizar o livro.", pe);
 		} finally {
 			em.close();
 		}
@@ -64,7 +64,7 @@ public class LivroDAO extends DAO {
 			if (transaction.isActive()) {
 				transaction.rollback();
 			}
-			throw new PersistenciaDacException("Ocorreu algum erro ao tentar remover o usuário.", pe);
+			throw new PersistenciaDacException("Ocorreu algum erro ao tentar remover o livro.", pe);
 		} finally {
 			em.close();
 		}
@@ -77,7 +77,7 @@ public class LivroDAO extends DAO {
 			resultado = em.find(LivroEntity.class, livroId);
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
-			throw new PersistenciaDacException("Ocorreu algum erro ao tentar recuperar o usuário com base no ID.", pe);
+			throw new PersistenciaDacException("Ocorreu algum erro ao tentar recuperar o livro com base no ID.", pe);
 		} finally {
 			em.close();
 		}
@@ -93,7 +93,7 @@ public class LivroDAO extends DAO {
 			resultado = query.getResultList();
 		} catch (PersistenceException pe) {
 			pe.printStackTrace();
-			throw new PersistenciaDacException("Ocorreu algum erro ao tentar recuperar todos os usuários.", pe);
+			throw new PersistenciaDacException("Ocorreu algum erro ao tentar recuperar todos os livros.", pe);
 		} finally {
 			em.close();
 		}

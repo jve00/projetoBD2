@@ -4,23 +4,17 @@ import br.edu.ifpb.mt.dac.dao.LivroDAO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroCreateDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroUpdateDTO;
-import br.edu.ifpb.mt.dac.entities.classe.LivroEntity;
+import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.RegraNegocioException;
 import br.edu.ifpb.mt.dac.services.Mocks.LivroMock;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.exceptions.base.MockitoException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
