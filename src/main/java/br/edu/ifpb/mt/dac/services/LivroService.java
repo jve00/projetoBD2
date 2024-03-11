@@ -4,9 +4,14 @@ import br.edu.ifpb.mt.dac.dao.LivroDAO;
 import br.edu.ifpb.mt.dac.dao.PersistenciaDacException;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroCreateDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroDTO;
+import br.edu.ifpb.mt.dac.dtos.livro.LivroDeleteDTO;
 import br.edu.ifpb.mt.dac.dtos.livro.LivroUpdateDTO;
 import br.edu.ifpb.mt.dac.entities.LivroEntity;
 import br.edu.ifpb.mt.dac.exceptions.RegraNegocioException;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +36,25 @@ public class LivroService {
         }catch (PersistenciaDacException erro){
             throw new RegraNegocioException("Ocorreu algum erro ao tentar atualizar o livro.");
         }
+    }
+
+    public LivroDTO deletarLivro(LivroDeleteDTO livroDeleteDTO) throws RegraNegocioException {
+        try {
+            livroDAO.delete(retornaLivroEntity(livroDeleteDTO));
+            return retornaLivroDTO(livroDeleteDTO);
+        } catch (PersistenciaDacException erro) {
+            throw new RegraNegocioException("Ocorreu algum erro ao tentar deletar o livro.");
+        }
+    }
+
+    // Método de listar livros
+    public List<LivroDTO> listarLivros() {
+        try {
+            return livroDAO.getAll().stream().map(this::retornaLivroDTO).toList();
+        } catch (PersistenciaDacException erro) {
+            erro.printStackTrace();
+        }
+        return null;
     }
 
     // Métodos conversão:
