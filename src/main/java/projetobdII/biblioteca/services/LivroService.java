@@ -1,5 +1,6 @@
 package projetobdII.biblioteca.services;
 
+import lombok.AllArgsConstructor;
 import projetobdII.biblioteca.dao.LivroDAO;
 import projetobdII.biblioteca.dao.PersistenciaDacException;
 import projetobdII.biblioteca.dtos.livro.LivroCreateDTO;
@@ -67,6 +68,9 @@ public class LivroService {
         }
         else if(object instanceof LivroUpdateDTO){
             livroEntity = objectMapper.convertValue((LivroUpdateDTO) object, LivroEntity.class);
+        }
+        else if(object instanceof  LivroDeleteDTO){
+            livroEntity = objectMapper.convertValue((LivroDeleteDTO) object, LivroEntity.class);
         }
         return livroEntity;
     }

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LivroUpdateDTO {
+    private Integer idLivroUpdateDTO;
     private String nome;
     private String autor;
     private String genero;

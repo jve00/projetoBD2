@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LivroDeleteDTO {
-    
+    private Integer idLivro;
     private String nome;
     private String autor;
     private String genero;

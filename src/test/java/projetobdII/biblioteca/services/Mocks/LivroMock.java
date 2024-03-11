@@ -21,6 +21,6 @@ public class LivroMock {
         return new LivroDTO("Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now());
     }
     public static LivroUpdateDTO retornaLivroUpdateMock(){
-        return new LivroUpdateDTO("Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now());
+        return new LivroUpdateDTO(1, "Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now());
     }
 }
