@@ -44,8 +44,8 @@ public class LivroService {
     }
 
     // Método de listar livros
-    public List<LivroEntity> listarLivros() throws Exception{
-        return livroDAO.getAll();
+    public List<LivroDTO> listarLivros() throws Exception{
+        return livroDAO.getAll().stream().map(this::retornaLivroDTO).toList();
     }
 
     // Métodos conversão:
