@@ -2,6 +2,7 @@ package projetobdII.biblioteca.mocks;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.beanutils.BeanUtils;
 import projetobdII.biblioteca.dao.LivroDAO;
 import projetobdII.biblioteca.dtos.livro.LivroCreateDTO;
 import projetobdII.biblioteca.dtos.livro.LivroDeleteDTO;
@@ -14,8 +15,8 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class MainLivroServiceSave {
 
-    public static void main(String[] args) throws RegraNegocioException {
-        LivroService livroService = new LivroService(new ObjectMapper(), new LivroDAO());
+    public static void main(String[] args) throws Exception {
+        LivroService livroService = new LivroService(new BeanUtils(), new LivroDAO());
         // Criando livro:
         LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now());
         System.out.println(livroService.criarLivro(livroCreateDTO));

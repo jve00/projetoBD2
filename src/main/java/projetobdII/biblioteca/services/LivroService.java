@@ -1,6 +1,6 @@
 package projetobdII.biblioteca.services;
 
-import lombok.AllArgsConstructor;
+import org.apache.commons.beanutils.BeanUtils;
 import projetobdII.biblioteca.dao.LivroDAO;
 import projetobdII.biblioteca.dao.PersistenciaDacException;
 import projetobdII.biblioteca.dtos.livro.LivroCreateDTO;
@@ -9,22 +9,23 @@ import projetobdII.biblioteca.dtos.livro.LivroDeleteDTO;
 import projetobdII.biblioteca.dtos.livro.LivroUpdateDTO;
 import projetobdII.biblioteca.entities.LivroEntity;
 import projetobdII.biblioteca.exceptions.RegraNegocioException;
-
+import java.lang.reflect.InvocationTargetException;
+import java.lang.IllegalAccessException;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+
+import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 public class LivroService {
-    private final ObjectMapper objectMapper;
+    private final BeanUtils beanUtils;
     private final LivroDAO livroDAO;
 
     public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException {
         try{
             livroDAO.save(retornaLivroEntity(livroCreateDTO));
             return retornaLivroDTO(livroCreateDTO);
-        }catch (PersistenciaDacException erro){
+        }catch (PersistenciaDacException | InvocationTargetException | IllegalAccessException erro){
             throw new RegraNegocioException("Ocorreu algum erro ao tentar salvar o livro.");
         }
     }
@@ -33,7 +34,7 @@ public class LivroService {
         try{
             livroDAO.update(retornaLivroEntity(livroUpdateDTO));
             return retornaLivroDTO(livroUpdateDTO);
-        }catch (PersistenciaDacException erro){
+        }catch (PersistenciaDacException | InvocationTargetException | IllegalAccessException erro){
             throw new RegraNegocioException("Ocorreu algum erro ao tentar atualizar o livro.");
         }
     }
@@ -42,50 +43,52 @@ public class LivroService {
         try {
             livroDAO.delete(retornaLivroEntity(livroDeleteDTO));
             return retornaLivroDTO(livroDeleteDTO);
-        } catch (PersistenciaDacException erro) {
+        } catch (PersistenciaDacException | InvocationTargetException | IllegalAccessException erro) {
             throw new RegraNegocioException("Ocorreu algum erro ao tentar deletar o livro.");
         }
     }
 
     // Método de listar livros
-    public List<LivroDTO> listarLivros() {
-        try {
-            return livroDAO.getAll().stream().map(this::retornaLivroDTO).toList();
-        } catch (PersistenciaDacException erro) {
-            erro.printStackTrace();
-        }
-        return null;
+    public List<LivroDTO> listarLivros() throws Exception{
+        return livroDAO.getAll().stream().map(livroEntity -> {
+            try {
+                return retornaLivroDTO(livroEntity);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }).toList();
     }
 
     // Métodos conversão:
-    public LivroEntity retornaLivroEntity(Object object){
+    public LivroEntity retornaLivroEntity(Object object) throws InvocationTargetException, IllegalAccessException {
         LivroEntity livroEntity = null;
         if(object instanceof LivroCreateDTO){
-            livroEntity = objectMapper.convertValue((LivroCreateDTO) object, LivroEntity.class);
+            BeanUtils.copyProperties(livroEntity, (LivroCreateDTO) object);
         }
         else if(object instanceof LivroDTO){
-            livroEntity = objectMapper.convertValue((LivroDTO) object, LivroEntity.class);
+            BeanUtils.copyProperties(livroEntity, (LivroDTO) object);
         }
         else if(object instanceof LivroUpdateDTO){
-            livroEntity = objectMapper.convertValue((LivroUpdateDTO) object, LivroEntity.class);
+            BeanUtils.copyProperties(livroEntity, (LivroUpdateDTO) object);
         }
         else if(object instanceof  LivroDeleteDTO){
-            livroEntity = objectMapper.convertValue((LivroDeleteDTO) object, LivroEntity.class);
-        }
+            BeanUtils.copyProperties(livroEntity, (LivroDeleteDTO) object);}
         return livroEntity;
     }
 
 
-    public LivroDTO retornaLivroDTO(Object object){
+    public LivroDTO retornaLivroDTO(Object object) throws InvocationTargetException, IllegalAccessException {
         LivroDTO livroDTO = null;
         if(object instanceof LivroCreateDTO){
-            livroDTO = objectMapper.convertValue((LivroCreateDTO) object, LivroDTO.class);
+            BeanUtils.copyProperties(livroDTO, (LivroCreateDTO) object);
         }
         else if(object instanceof LivroEntity){
-            livroDTO = objectMapper.convertValue((LivroEntity) object, LivroDTO.class);
+            BeanUtils.copyProperties(livroDTO, (LivroEntity) object);
         }
         else if(object instanceof LivroUpdateDTO){
-            livroDTO = objectMapper.convertValue((LivroUpdateDTO) object, LivroDTO.class);
+            BeanUtils.copyProperties(livroDTO, (LivroUpdateDTO) object);
         }
         return livroDTO;
     }
