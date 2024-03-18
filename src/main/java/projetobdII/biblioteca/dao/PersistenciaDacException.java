@@ -1,8 +1,8 @@
 package projetobdII.biblioteca.dao;
 
-import projetobdII.biblioteca.exceptions.DacException;
+import projetobdII.biblioteca.exceptions.DaoException;
 
-public class PersistenciaDacException extends DacException {
+public class PersistenciaDacException extends DaoException {
 
 	private static final long serialVersionUID = 7159282553688713660L;
 
