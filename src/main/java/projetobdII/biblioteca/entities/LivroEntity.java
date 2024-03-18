@@ -28,6 +28,7 @@ public class LivroEntity implements Serializable {
 
     @Column(name = "AUTOR", nullable = false)
     private String autor;
+
     @Column(name = "DATA_DE_PUBLICACAO", nullable = false)
     private LocalDate dataDePublicacao;
 
