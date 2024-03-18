@@ -37,6 +37,17 @@ public class LivroEntity implements Serializable {
     private GeneroLivro genero;
 
 
+    @Override
+    public String toString() {
+        return "Livro Buscado{" +
+                 ", " + id +
+                ", " + nome + '\'' +
+                ", " + autor + '\'' +
+                ", " + dataDePublicacao +
+                ", " + genero +
+                '}';
+    }
+
     public String getNome() {
         return nome;
     }

@@ -13,18 +13,18 @@ public class MainUpdate {
 			LivroDAO dao = new LivroDAO();
 			try {
 
-				LivroEntity livroEntity = dao.getByID(23);
+				LivroEntity livroEntity = dao.getByID(33);
 
-				livroEntity.setNome("livro ADS");
-				livroEntity.setGenero(GeneroLivro.FICCAO_CIENTIFICA);
-				livroEntity.setAutor("Jadson");
+				livroEntity.setNome("Ja perdi o cabaço, coomo consegui mais vezes");
+				livroEntity.setGenero(GeneroLivro.SUSPENSE);
+				livroEntity.setAutor("Gabriel Laet");
 				livroEntity.setDataDePublicacao(LocalDate.now());
 
 				//dao.save(livroEntity);
 
 				System.out.println(livroEntity);
 
-				livroEntity.setNome("livro ADS");
+				livroEntity.setNome("Ja perdi o cabaço, coomo consegui mais vezes");
 
 				dao.update(livroEntity);
 

@@ -1,6 +1,7 @@
 package projetobdII.biblioteca.controller;
 
 
+import projetobdII.biblioteca.dao.PersistenciaDacException;
 import projetobdII.biblioteca.dtos.livro.LivroCreateDTO;
 import projetobdII.biblioteca.dtos.livro.LivroDTO;
 import projetobdII.biblioteca.dtos.livro.LivroUpdateDTO;
@@ -15,7 +16,7 @@ public class LivroController {
 
     private LivroService livroService;
 
-    public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException {
+    public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException, PersistenciaDacException {
         return livroService.criarLivro(livroCreateDTO);
     }
 

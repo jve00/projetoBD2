@@ -14,9 +14,9 @@ public class MainSave {
 		try {
 			LivroEntity livroEntity = new LivroEntity();
 
-			livroEntity.setNome("livro teste");
-			livroEntity.setGenero(GeneroLivro.FANTASIA);
-			livroEntity.setAutor("jadson");
+			livroEntity.setNome("como perder o cabaço");
+			livroEntity.setGenero(GeneroLivro.SUSPENSE);
+			livroEntity.setAutor("Gabriel Laet");
 			livroEntity.setDataDePublicacao(LocalDate.now());
 
 			System.out.println(livroEntity);

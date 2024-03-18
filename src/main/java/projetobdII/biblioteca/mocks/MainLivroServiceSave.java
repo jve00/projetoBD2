@@ -16,17 +16,18 @@ public class MainLivroServiceSave {
         LivroService livroService = new LivroService(new ObjectMapper(), new LivroDAO());
 
         // Criando livro:
-        LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Harry Potter", "Ninguem", GeneroLivro.FICCAO_CIENTIFICA, LocalDate.now());
-        System.out.println(livroService.criarLivro(livroCreateDTO));
+       LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Harry Potter", "Ninguem", GeneroLivro.FICCAO_CIENTIFICA, LocalDate.now());
+       System.out.println(livroService.criarLivro(livroCreateDTO));
 
-//        // Atualizando livro:
-//        LivroUpdateDTO livroUpdateDTO = new LivroUpdateDTO(22, "Harry Potter", "Ninguem", GeneroLivro.FANTASIA, LocalDate.now());
-//        System.out.println(livroService.atualizarLivro(livroUpdateDTO));
-//
-//        // Listando todos os livros:
-//        System.out.println(livroService.listarLivros());
-//
-//        // Deletando livro
-//        System.out.println(livroService.deletarLivro(new LivroDeleteDTO(22, "Harry Potter", "Ninguem", GeneroLivro.ROMANCE, LocalDate.now())));
+        // Atualizando livro:
+
+        LivroUpdateDTO livroUpdateDTO = new LivroUpdateDTO(36, "gabri Potter", "ok tudo bem", GeneroLivro.FANTASIA, LocalDate.now());
+        System.out.println(livroService.atualizarLivro(livroUpdateDTO));
+
+       // Listando todos os livros:
+        System.out.println(livroService.listarLivros());
+
+        // Deletando livro
+        System.out.println(livroService.deletarLivro(new LivroDeleteDTO(22, "Harry Potter", "Ninguem", GeneroLivro.ROMANCE, LocalDate.now())));
     }
 }

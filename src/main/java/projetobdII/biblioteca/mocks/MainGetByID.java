@@ -14,17 +14,15 @@ public class MainGetByID {
 		LivroDAO dao = new LivroDAO();
 		try {
 
-			LivroEntity livroEntity = new LivroEntity();
+			LivroEntity livroEntity = dao.getByID(33);
 
 			livroEntity.setNome("auto da compadecida");
 			livroEntity.setGenero(GeneroLivro.ROMANCE);
 			livroEntity.setAutor("Robson Caliban");
 			livroEntity.setDataDePublicacao(LocalDate.now());
 
-			dao.save(livroEntity);
-
 			LivroEntity resultado = dao.getByID(livroEntity.getId());
-
+			System.out.println(resultado);
 		} finally {
 			dao.close();
 		}

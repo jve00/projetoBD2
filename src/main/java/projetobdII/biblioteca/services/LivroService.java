@@ -11,7 +11,6 @@ import projetobdII.biblioteca.dtos.livro.LivroUpdateDTO;
 import projetobdII.biblioteca.entities.LivroEntity;
 import projetobdII.biblioteca.exceptions.RegraNegocioException;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,6 +21,7 @@ public class LivroService {
 
     public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException, PersistenciaDacException {
         livroDAO.save(retornaLivroEntity(livroCreateDTO));
+
         return retornaLivroDTO(livroCreateDTO);
     }
 
@@ -45,7 +45,7 @@ public class LivroService {
 
     // Método de listar livros
     public List<LivroEntity> listarLivros() throws Exception{
-        return livroDAO.getAll().stream().map(this::retornaLivroEntity).toList();
+        return livroDAO.getAll();
     }
 
     // Métodos conversão:
@@ -62,11 +62,11 @@ public class LivroService {
         }
         else if(object instanceof LivroUpdateDTO){
             LivroUpdateDTO livroUpdateDTO = (LivroUpdateDTO) object;
-            livroEntity = new LivroEntity(null, livroUpdateDTO.getNome(), livroUpdateDTO.getAutor(), livroUpdateDTO.getLocalDate(), livroUpdateDTO.getGenero());
+            livroEntity = new LivroEntity(livroUpdateDTO.getIdLivroUpdateDTO(), livroUpdateDTO.getNome(), livroUpdateDTO.getAutor(), livroUpdateDTO.getLocalDate(), livroUpdateDTO.getGenero());
         }
         else if(object instanceof  LivroDeleteDTO) {
             LivroDeleteDTO livroDeleteDTO = (LivroDeleteDTO) object;
-            livroEntity = new LivroEntity(null, livroDeleteDTO.getNome(), livroDeleteDTO.getAutor(), livroDeleteDTO.getLocalDate(), livroDeleteDTO.getGenero());
+            livroEntity = new LivroEntity(livroDeleteDTO.getIdLivro(), livroDeleteDTO.getNome(), livroDeleteDTO.getAutor(), livroDeleteDTO.getLocalDate(), livroDeleteDTO.getGenero());
         }
         return livroEntity;
     }
