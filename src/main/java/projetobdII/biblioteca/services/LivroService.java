@@ -1,5 +1,7 @@
 package projetobdII.biblioteca.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.beanutils.BeanUtils;
 import projetobdII.biblioteca.dao.LivroDAO;
 import projetobdII.biblioteca.dao.PersistenciaDacException;
@@ -9,19 +11,18 @@ import projetobdII.biblioteca.dtos.livro.LivroDeleteDTO;
 import projetobdII.biblioteca.dtos.livro.LivroUpdateDTO;
 import projetobdII.biblioteca.entities.LivroEntity;
 import projetobdII.biblioteca.exceptions.RegraNegocioException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.IllegalAccessException;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
 
-import static java.util.stream.Collectors.toList;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class LivroService {
-    private final BeanUtils beanUtils;
+    private final ObjectMapper beanUtils;
     private final LivroDAO livroDAO;
 
+
     public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException {
+
         try{
             livroDAO.save(retornaLivroEntity(livroCreateDTO));
             return retornaLivroDTO(livroCreateDTO);
@@ -63,7 +64,7 @@ public class LivroService {
 
     // Métodos conversão:
     public LivroEntity retornaLivroEntity(Object object) throws InvocationTargetException, IllegalAccessException {
-        LivroEntity livroEntity = null;
+        LivroEntity livroEntity = new LivroEntity();
         if(object instanceof LivroCreateDTO){
             BeanUtils.copyProperties(livroEntity, (LivroCreateDTO) object);
         }
@@ -80,7 +81,7 @@ public class LivroService {
 
 
     public LivroDTO retornaLivroDTO(Object object) throws InvocationTargetException, IllegalAccessException {
-        LivroDTO livroDTO = null;
+        LivroDTO livroDTO = new LivroDTO();
         if(object instanceof LivroCreateDTO){
             BeanUtils.copyProperties(livroDTO, (LivroCreateDTO) object);
         }

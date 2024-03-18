@@ -1,7 +1,6 @@
 package projetobdII.biblioteca.windows.jpanels;
 
 import javax.swing.*;
-import java.util.List;
 
 public class JPanelListLivro extends JPanel {
     public JPanelListLivro(){

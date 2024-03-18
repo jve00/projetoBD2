@@ -1,8 +1,8 @@
 package projetobdII.biblioteca.entities;
 
-import projetobdII.biblioteca.enuns.GeneroLivro;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import projetobdII.biblioteca.enuns.GeneroLivro;
 
 import javax.persistence.*;
 import java.io.Serializable;
