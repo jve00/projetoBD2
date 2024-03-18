@@ -1,30 +1,33 @@
 package projetobdII.biblioteca.mocks;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import projetobdII.biblioteca.dao.LivroDAO;
 import projetobdII.biblioteca.dtos.livro.LivroCreateDTO;
 import projetobdII.biblioteca.dtos.livro.LivroDeleteDTO;
 import projetobdII.biblioteca.dtos.livro.LivroUpdateDTO;
-import projetobdII.biblioteca.exceptions.RegraNegocioException;
+import projetobdII.biblioteca.enuns.GeneroLivro;
 import projetobdII.biblioteca.services.LivroService;
 
 import java.time.LocalDate;
 
-@RequiredArgsConstructor
 public class MainLivroServiceSave {
 
-    public static void main(String[] args) throws RegraNegocioException {
+    public static void main(String[] args) throws Exception {
         LivroService livroService = new LivroService(new ObjectMapper(), new LivroDAO());
+
         // Criando livro:
-        LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now());
-        System.out.println(livroService.criarLivro(livroCreateDTO));
-        // atualizando livro:
-        LivroUpdateDTO livroUpdateDTO = new LivroUpdateDTO(22, "Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now());
+       LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Harry Potter", "Ninguem", GeneroLivro.FICCAO_CIENTIFICA, LocalDate.now());
+       System.out.println(livroService.criarLivro(livroCreateDTO));
+
+        // Atualizando livro:
+
+        LivroUpdateDTO livroUpdateDTO = new LivroUpdateDTO(36, "gabri Potter", "ok tudo bem", GeneroLivro.FANTASIA, LocalDate.now());
         System.out.println(livroService.atualizarLivro(livroUpdateDTO));
-        // listando todos os livros:
+
+       // Listando todos os livros:
         System.out.println(livroService.listarLivros());
-        // deletando livro
-        System.out.println(livroService.deletarLivro(new LivroDeleteDTO(22, "Harry Potter", "Ninguem", "FICCAO_CIENTIFICA", LocalDate.now())));
+
+        // Deletando livro
+        System.out.println(livroService.deletarLivro(new LivroDeleteDTO(22, "Harry Potter", "Ninguem", GeneroLivro.ROMANCE, LocalDate.now())));
     }
 }

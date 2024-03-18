@@ -1,8 +1,8 @@
 package projetobdII.biblioteca.entities;
 
-import projetobdII.biblioteca.enuns.GeneroLivro;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import projetobdII.biblioteca.enuns.GeneroLivro;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,6 +28,7 @@ public class LivroEntity implements Serializable {
 
     @Column(name = "AUTOR", nullable = false)
     private String autor;
+
     @Column(name = "DATA_DE_PUBLICACAO", nullable = false)
     private LocalDate dataDePublicacao;
 
@@ -35,6 +36,17 @@ public class LivroEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private GeneroLivro genero;
 
+
+    @Override
+    public String toString() {
+        return "Livro Buscado{" +
+                 ", " + id +
+                ", " + nome + '\'' +
+                ", " + autor + '\'' +
+                ", " + dataDePublicacao +
+                ", " + genero +
+                '}';
+    }
 
     public String getNome() {
         return nome;

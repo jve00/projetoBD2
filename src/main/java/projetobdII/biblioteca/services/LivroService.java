@@ -1,6 +1,7 @@
 package projetobdII.biblioteca.services;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import projetobdII.biblioteca.dao.LivroDAO;
 import projetobdII.biblioteca.dao.PersistenciaDacException;
 import projetobdII.biblioteca.dtos.livro.LivroCreateDTO;
@@ -12,21 +13,16 @@ import projetobdII.biblioteca.exceptions.RegraNegocioException;
 
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-
 @RequiredArgsConstructor
 public class LivroService {
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper beanUtils;
     private final LivroDAO livroDAO;
 
-    public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException {
-        try{
-            livroDAO.save(retornaLivroEntity(livroCreateDTO));
-            return retornaLivroDTO(livroCreateDTO);
-        }catch (PersistenciaDacException erro){
-            throw new RegraNegocioException("Ocorreu algum erro ao tentar salvar o livro.");
-        }
+
+    public LivroDTO criarLivro(LivroCreateDTO livroCreateDTO) throws RegraNegocioException, PersistenciaDacException {
+        livroDAO.save(retornaLivroEntity(livroCreateDTO));
+
+        return retornaLivroDTO(livroCreateDTO);
     }
 
     public LivroDTO atualizarLivro(LivroUpdateDTO livroUpdateDTO) throws RegraNegocioException{
@@ -48,42 +44,47 @@ public class LivroService {
     }
 
     // Método de listar livros
-    public List<LivroDTO> listarLivros() {
-        try {
-            return livroDAO.getAll().stream().map(this::retornaLivroDTO).toList();
-        } catch (PersistenciaDacException erro) {
-            erro.printStackTrace();
-        }
-        return null;
+    public List<LivroDTO> listarLivros() throws Exception{
+        return livroDAO.getAll().stream().map(this::retornaLivroDTO).toList();
     }
 
     // Métodos conversão:
-    public LivroEntity retornaLivroEntity(Object object){
+    public LivroEntity retornaLivroEntity(Object object) {
         LivroEntity livroEntity = null;
         if(object instanceof LivroCreateDTO){
-            livroEntity = objectMapper.convertValue((LivroCreateDTO) object, LivroEntity.class);
+            LivroCreateDTO livroCreateDTO = (LivroCreateDTO) object;
+            livroEntity = new LivroEntity(null, livroCreateDTO.getNome(), livroCreateDTO.getAutor(), livroCreateDTO.getLocalDate(), livroCreateDTO.getGenero());
         }
         else if(object instanceof LivroDTO){
-            livroEntity = objectMapper.convertValue((LivroDTO) object, LivroEntity.class);
+            LivroDTO livroDTO = (LivroDTO) object;
+            livroEntity = new LivroEntity(null, livroDTO.getNome(), livroDTO.getAutor(), livroDTO.getLocalDate(), livroDTO.getGenero());
+
         }
         else if(object instanceof LivroUpdateDTO){
-            livroEntity = objectMapper.convertValue((LivroUpdateDTO) object, LivroEntity.class);
+            LivroUpdateDTO livroUpdateDTO = (LivroUpdateDTO) object;
+            livroEntity = new LivroEntity(livroUpdateDTO.getIdLivroUpdateDTO(), livroUpdateDTO.getNome(), livroUpdateDTO.getAutor(), livroUpdateDTO.getLocalDate(), livroUpdateDTO.getGenero());
         }
-        else if(object instanceof  LivroDeleteDTO){
-            livroEntity = objectMapper.convertValue((LivroDeleteDTO) object, LivroEntity.class);
+        else if(object instanceof  LivroDeleteDTO) {
+            LivroDeleteDTO livroDeleteDTO = (LivroDeleteDTO) object;
+            livroEntity = new LivroEntity(livroDeleteDTO.getIdLivro(), livroDeleteDTO.getNome(), livroDeleteDTO.getAutor(), livroDeleteDTO.getLocalDate(), livroDeleteDTO.getGenero());
         }
         return livroEntity;
     }
-    public LivroDTO retornaLivroDTO(Object object){
+
+
+    public LivroDTO retornaLivroDTO(Object object) {
         LivroDTO livroDTO = null;
         if(object instanceof LivroCreateDTO){
-            livroDTO = objectMapper.convertValue((LivroCreateDTO) object, LivroDTO.class);
+            LivroCreateDTO livroCreateDTO = (LivroCreateDTO) object;
+            livroDTO = new LivroDTO(livroCreateDTO.getNome(), livroCreateDTO.getAutor(), livroCreateDTO.getGenero(), livroCreateDTO.getLocalDate());
         }
         else if(object instanceof LivroEntity){
-            livroDTO = objectMapper.convertValue((LivroEntity) object, LivroDTO.class);
+            LivroEntity livroEntity1 = (LivroEntity) object;
+            livroDTO = new LivroDTO(livroEntity1.getNome(), livroEntity1.getAutor(), livroEntity1.getGenero(), livroEntity1.getDataDePublicacao());
         }
         else if(object instanceof LivroUpdateDTO){
-            livroDTO = objectMapper.convertValue((LivroUpdateDTO) object, LivroDTO.class);
+            LivroUpdateDTO livroUpdateDTO = (LivroUpdateDTO) object;
+            livroDTO = new LivroDTO(livroUpdateDTO.getNome(), livroUpdateDTO.getAutor(), livroUpdateDTO.getGenero(), livroUpdateDTO.getLocalDate());
         }
         return livroDTO;
     }
