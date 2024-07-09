@@ -15,19 +15,19 @@ public class MainLivroServiceSave {
     public static void main(String[] args) throws Exception {
         LivroService livroService = new LivroService(new ObjectMapper(), new LivroDAO());
 
-        // Criando livro:
-       LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Harry Potter", "Ninguem", GeneroLivro.FICCAO_CIENTIFICA, LocalDate.now());
-       System.out.println(livroService.criarLivro(livroCreateDTO));
+//        // Criando livro:
+//       LivroCreateDTO livroCreateDTO = new LivroCreateDTO("Percy Jackson", "Rick Riordan", GeneroLivro.FICCAO_CIENTIFICA, LocalDate.now());
+//       System.out.println(livroService.criarLivro(livroCreateDTO));
 
         // Atualizando livro:
 
-        LivroUpdateDTO livroUpdateDTO = new LivroUpdateDTO(36, "gabri Potter", "ok tudo bem", GeneroLivro.FANTASIA, LocalDate.now());
-        System.out.println(livroService.atualizarLivro(livroUpdateDTO));
+//        LivroUpdateDTO livroUpdateDTO = new LivroUpdateDTO(4, "Harry Potter", "J. K. Rowling", GeneroLivro.FANTASIA, LocalDate.now());
+//        System.out.println(livroService.atualizarLivro(livroUpdateDTO));
 
-       // Listando todos os livros:
-        System.out.println(livroService.listarLivros());
+//       // Listando todos os livros:
+//        System.out.println(livroService.listarLivros());
 
         // Deletando livro
-        System.out.println(livroService.deletarLivro(new LivroDeleteDTO(22, "Harry Potter", "Ninguem", GeneroLivro.ROMANCE, LocalDate.now())));
+        System.out.println(livroService.deletarLivro(new LivroDeleteDTO(4, "Harry Potter", "J. K. Rowling", GeneroLivro.ROMANCE, LocalDate.now())));
     }
 }
